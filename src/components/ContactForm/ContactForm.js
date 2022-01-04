@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import contactsActions from "../../redux/Contacts/contacts-actions";
 import "./ContactForm.scss";
+import { getContacts } from "../../redux/Contacts/contacts-selectors";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  const contacts = useSelector((state) => state.contacts.items);
+  const contacts = useSelector(getContacts);
 
   const dispatch = useDispatch();
   const onSubmit = (name, number) =>

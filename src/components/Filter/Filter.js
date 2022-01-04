@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import contactsActions from "../../redux/Contacts/contacts-actions";
+import { getFilter } from "../../redux/Contacts/contacts-selectors";
 
 import "./Filter.scss";
 
 export default function Filter() {
-  const value = useSelector((state) => state.contacts.filter);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
   const onChange = (event) =>
     dispatch(contactsActions.changeFilter(event.target.value));
@@ -17,7 +18,7 @@ export default function Filter() {
         className="input__form"
         type="text"
         name="filter"
-        value={value}
+        value={filter}
         onChange={onChange}
       />
     </label>
